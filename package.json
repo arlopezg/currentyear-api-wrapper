@@ -4,10 +4,11 @@
   "description": "Node wrapper for Adam Green's CurrentYear API",
   "main": "dist/index.js",
   "scripts": {
+    "build": "tsc && node dist/index.js",
     "lint": "eslint . --ext .ts",
-    "start": "tsc && node dist/index.js",
-    "test": "jest",
-    "test:coverage": "jest --collect-coverage"
+    "prepublishOnly": "npm run lint && npm test && npm run build",
+    "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "test": "jest"
   },
   "keywords": [],
   "author": "Alejandro López",
@@ -18,6 +19,7 @@
     "@types/node-fetch": "^3.0.3",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
+    "coveralls": "^3.1.1",
     "eslint": "^8.5.0",
     "jest": "^27.4.5",
     "jest-fetch-mock": "^3.0.3",

@@ -1,0 +1,29 @@
+name: Submit coverage report
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build_coverage:
+    name: Submit coverage
+    runs-on: ubuntu-latest
+    env:
+      COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles("package-lock.json") }}
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != "true"
+        run: npm ci --ignore-scripts --quiet --no-progress
+      - name: Test and submit
+        run: npm run test:coverage
