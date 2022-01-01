@@ -1,19 +1,25 @@
 {
   "name": "@arlopezg/currentyear-api-wrapper",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "Node wrapper for Adam Green's CurrentYear API",
   "main": "dist/index.js",
+  "unpkg": "dist/index.js",
+  "private": false,
   "scripts": {
-    "build": "tsc && node dist/index.js",
+    "build": "tsc",
     "lint": "eslint . --ext .ts",
     "prepublishOnly": "npm run lint && npm test && npm run build",
-    "test:coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "publish": "npm publish --tag latest",
+    "test:coverage": "jest --coverage && cat coverage/lcov.info | coveralls",
     "test": "jest"
   },
-  "keywords": [],
+  "keywords": [
+    "currentyear",
+    "node",
+    "satire"
+  ],
   "author": "Alejandro López",
   "license": "MIT",
-  "unpkg": "dist/index.js",
   "devDependencies": {
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.5",
@@ -42,5 +48,5 @@
   "bugs": {
     "url": "https://github.com/arlopezg/currentyear-api-wrapper/issues"
   },
-  "homepage": "https://github.com/arlopezg/currentyear-api-wrapper#readme"
+  "homepage": "https://current-year-api.addy.codes/"
 }

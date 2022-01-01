@@ -10,5 +10,15 @@
     "strict": true,
     "target": "es6"
   },
-  "exclude": ["jest.config.ts", "tests", "**/*.spec.*"]
+  "exclude": [
+    "**/*.spec.*",
+    "jest.config.ts",
+    "tests"
+  ],
+  "include": [
+    "./LICENSE",
+    "./package.json",
+    "./README.md",
+    "src"
+  ]
 }
