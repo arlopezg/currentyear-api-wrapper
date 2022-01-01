@@ -1,3 +1,4 @@
+import fetchMock from "jest-fetch-mock";
 import { CurrentYearService } from ".";
 
 describe("CurrentYearService", () => {
