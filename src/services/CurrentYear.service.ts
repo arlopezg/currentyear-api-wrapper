@@ -1,6 +1,7 @@
 import timezones from "timezones-list";
 
-import { HttpService } from "./Http.service";
+import { HttpService } from ".";
+import { TimezoneError } from "../exceptions";
 
 /**
  * Handles everything related to the CurrentYear API.
@@ -26,28 +27,34 @@ export class CurrentYearService {
     if (this.timezones.some((tz) => tz === tzCode)) {
       return;
     }
-    throw new Error(`Invalid timezone. "${tzCode}" could not be found`);
-  }
-
-  async getCurrentYear(timezone?: string): Promise<string> {
-    try {
-      timezone && this.abortIfBadTimezone(timezone);
-      return (await this.http.get(`/what-year-is-it?in=${timezone}`)) as string;
-    } catch (e) {
-      throw new Error(e as string);
-    }
+    throw new TimezoneError(tzCode);
   }
 
   /**
-   * @experimental.
+   * @async
+   * @link https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+   * @param {string} timezone Desired timezone, following the TZ format
+   * @example await service.getCurrentYear("America/New_York")
+   * @returns Current year on specified timezone as a string.
+   * @throws if
+   */
+  async getCurrentYear(timezone?: string): Promise<string> {
+    timezone && this.abortIfBadTimezone(timezone);
+    return (await this.http.get(`/what-year-is-it?in=${timezone}`)) as string;
+  }
+
+  /**
+   * @async
+   * @link https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+   * @param {string[]} timezones Desired timezones, following the TZ format
+   * @example await service.getCurrentYearOnManyTimezones(["America/New_York", "Europe/Madrid"])
+   * @returns Current year on specified timezones as a a tuple list.
    */
   async getCurrentYearOnManyTimezones(
-    _timezones: string[]
+    timezones: string[]
   ): Promise<[string, string][]> {
-    // TODO
-    // const response = await Promise.allSettled(
-    //   timezones.map((t) => this.getCurrentYear(t))
-    // );
-    return [["foo", "bar"]];
+    return await Promise.all(
+      timezones.map(async (t) => [t, await this.getCurrentYear(t)])
+    );
   }
 }

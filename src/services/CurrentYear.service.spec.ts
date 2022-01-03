@@ -1,5 +1,7 @@
 import fetchMock from "jest-fetch-mock";
+
 import { CurrentYearService } from ".";
+import { TimezoneError } from "../exceptions";
 
 describe("CurrentYearService", () => {
   const mockYears = ["1", "2020", "2030"];
@@ -19,15 +21,20 @@ describe("CurrentYearService", () => {
 
   it("should throw if invalid timezone requested", async () => {
     await expect(async () =>
-      instance.getCurrentYear("foobar")
-    ).rejects.toThrowError();
+      instance.getCurrentYear("I_DONT/EXIST")
+    ).rejects.toThrowError(TimezoneError);
   });
 
-  xit("should return years on multiple timezones", async () => {
-    fetchMock.mockResponse(JSON.stringify("2020"));
+  it("should return years on multiple timezones", async () => {
+    const expectedYear = "2020";
     const timezones = ["America/Caracas", "America/Santiago", "Europe/Oslo"];
+    fetchMock.mockResponse(JSON.stringify(expectedYear));
 
-    const response = await instance.getCurrentYearOnManyTimezones(timezones);
-    expect(response[0]).toBe(["America/Caracas", ["2022"]]);
+    const responses = await instance.getCurrentYearOnManyTimezones(timezones);
+    responses.forEach((res, i) => {
+      const [receivedTimezone, receivedYear] = res;
+      expect(receivedTimezone).toBe(timezones[i]);
+      expect(receivedYear).toBe(expectedYear);
+    });
   });
 });
