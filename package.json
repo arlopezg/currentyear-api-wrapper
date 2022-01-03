@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "private": false,
   "unpkg": "dist/index.js",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "files": [
     "dist",
     "LICENSE",
@@ -17,6 +17,7 @@
     "build:docs": "typedoc src --excludePrivate",
     "build": "tsc",
     "lint": "eslint . --ext .ts",
+    "prepublishOnly": "npm run build",
     "test:coverage": "jest --coverage && cat coverage/lcov.info | coveralls",
     "test": "jest"
   },

@@ -12,7 +12,7 @@ Get the current year for either UTC or specific timezone(s).
 
 **NPM**
 
-`npm i currentyear-api-wrapper`
+`npm i currentyear-api-wrapper@latest`
 
 **CDN (no installation required)**
 
