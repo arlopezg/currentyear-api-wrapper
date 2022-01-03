@@ -2,7 +2,7 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "commonjs",
+    "module": "es6",
     "moduleResolution": "node",
     "outDir": "./dist",
     "sourceMap": true,
@@ -14,11 +14,5 @@
     "**/*.spec.*",
     "jest.config.ts",
     "tests"
-  ],
-  "include": [
-    "./LICENSE",
-    "./package.json",
-    "./README.md",
-    "src"
   ]
 }
