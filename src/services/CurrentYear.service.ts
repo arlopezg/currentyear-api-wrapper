@@ -4,6 +4,8 @@ import { HttpService } from "./Http.service";
 
 /**
  * Handles everything related to the CurrentYear API.
+ * @access public
+ * @example const service = new CurrentYearService();
  * @link https://current-year-api.addy.codes/
  */
 export class CurrentYearService {
@@ -16,8 +18,7 @@ export class CurrentYearService {
   }
 
   /**
-   * Prevents requesting non-existing timezones, although it is an evolving standard
-   * so it should be taken with a grain of salt.
+   * Prevents requesting non-existing timezones
    * @param {string} tzCode Timezone Code to be validated
    * @throws A detailed error message if the requested timezone does not exist
    */
@@ -37,6 +38,9 @@ export class CurrentYearService {
     }
   }
 
+  /**
+   * @experimental.
+   */
   async getCurrentYearOnManyTimezones(
     _timezones: string[]
   ): Promise<[string, string][]> {
