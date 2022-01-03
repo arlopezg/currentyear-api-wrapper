@@ -5,7 +5,28 @@
 <p><a href="https://www.npmjs.com/package/currentyear-api-wrapper"><img src="https://img.shields.io/npm/v/currentyear-api-wrapper" alt="npm"></a>
 <a href="https://coveralls.io/github/arlopezg/currentyear-api-wrapper?branch=master"><img src="https://coveralls.io/repos/github/arlopezg/currentyear-api-wrapper/badge.svg?branch=master" alt="coverage report"></a>
 <a href="https://bundlephobia.com/package/currentyear-api-wrapper"><img src="https://img.shields.io/bundlephobia/minzip/currentyear-api-wrapper" alt="bundle size"></a></p>
-<p>Get the current year for either UTC or a specific timezone.</p>
+<p>Get the current year for either UTC or specific timezone(s).</p>
+<hr>
+
+<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+  <h2>Getting started</h2>
+</a>
+<p><strong>NPM</strong></p>
+<p><code>npm i currentyear-api-wrapper</code></p>
+<p><strong>CDN (no installation required)</strong></p>
+<p><code>&lt;script src=&quot;https://unpkg.com/currentyear-api-wrapper&quot;&gt;&lt;/script&gt;</code></p>
+
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h2>Usage</h2>
+</a>
+<p>You will most likely be using the <code>CurrentYearService</code> which you can import as:</p>
+<pre><code class="language-javascript"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">CurrentYearService</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&quot;currentyear-api-wrapper&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">service</span><span class="hl-1"> = </span><span class="hl-4">new</span><span class="hl-1"> </span><span class="hl-6">CurrentYearService</span><span class="hl-1">();</span><br/><span class="hl-2">service</span><span class="hl-1">.</span><span class="hl-6">getCurrentYear</span><span class="hl-1">(</span><span class="hl-3">&quot;America/New_York&quot;</span><span class="hl-1">).</span><span class="hl-6">then</span><span class="hl-1">(</span><span class="hl-2">console</span><span class="hl-1">.</span><span class="hl-2">log</span><span class="hl-1">); </span><span class="hl-7">// e.g. &quot;2022&quot;</span>
+</code></pre>
+
+<a href="#reference" id="reference" style="color: inherit; text-decoration: none;">
+  <h3>Reference</h3>
+</a>
+<p>Documentation is generated using <a href="https://typedoc.org/">TypeDoc</a> and it&#39;s available at <a href="https://arlopezg.github.io/currentyear-api-wrapper">https://arlopezg.github.io/currentyear-api-wrapper</a></p>
 <hr>
 <p>In the words of the wise Adam Green,</p>
 <blockquote>
