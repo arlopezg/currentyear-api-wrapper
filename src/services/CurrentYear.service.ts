@@ -35,8 +35,8 @@ export class CurrentYearService {
    * @link https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
    * @param {string} timezone Desired timezone, following the TZ format
    * @example await service.getCurrentYear("America/New_York")
-   * @returns Current year on specified timezone as a string.
-   * @throws if
+   * @returns Current year on specified timezone as a string. If no timezone is required it assumes UTC.
+   * @throws `TimezoneError` if invalid timezone
    */
   async getCurrentYear(timezone?: string): Promise<string> {
     timezone && this.abortIfBadTimezone(timezone);
