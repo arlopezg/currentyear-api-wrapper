@@ -1,0 +1,51 @@
+@import url("https://unpkg.com/open-props");
+@import url("https://unpkg.com/open-props/normalize.min.css");
+
+body {
+  background-color: var(--gray-1);
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: 50px auto auto 40px;
+}
+
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+p {
+  color: var(--gray-7);
+}
+
+header,
+footer {
+  align-items: center;
+  display: flex;
+  padding: var(--size-fluid-1);
+}
+header {
+  background-color: var(--gray-3);
+}
+footer {
+  background-color: var(--gray-2);
+}
+
+body > article,
+body > section {
+  padding: var(--size-fluid-2);
+}
+h1 {
+  font-size: var(--font-size-3);
+  max-inline-size: var(--size-header-3);
+}
+a {
+  color: var(--orange-4) !important;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+pre {
+  background-color: var(--gray-7);
+  color: var(--red-4);
+}
