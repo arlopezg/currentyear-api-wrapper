@@ -3,7 +3,7 @@
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "es6",
+    "module": "esnext",
     "moduleResolution": "node",
     "outDir": "./dist",
     "sourceMap": true,
@@ -11,9 +11,5 @@
     "strict": true,
     "target": "es6"
   },
-  "exclude": [
-    "**/*.spec.*",
-    "jest.config.ts",
-    "tests"
-  ]
+  "exclude": ["**/*.spec.*", "jest.config.ts", "tests", "dist"]
 }

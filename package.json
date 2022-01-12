@@ -1,12 +1,12 @@
 {
   "name": "currentyear-api-wrapper",
   "author": "Alejandro López",
-  "description": "Node wrapper for Adam Green's CurrentYear API",
+  "description": "Node wrapper for Adam Greenough's CurrentYear API",
   "license": "MIT",
   "main": "dist/index.js",
   "private": false,
   "unpkg": "dist/index.js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "files": [
     "dist",
     "LICENSE",
@@ -14,6 +14,7 @@
     "README.md"
   ],
   "scripts": {
+    "start": "cd demo && npm start",
     "build:docs": "typedoc src --excludePrivate",
     "build": "tsc",
     "lint": "eslint . --ext .ts",
@@ -37,6 +38,7 @@
     "typescript": "^4.5.4"
   },
   "dependencies": {
+    "currentyear-api-wrapper": "^0.0.5",
     "isomorphic-fetch": "^3.0.0",
     "timezones-list": "^3.0.1"
   },
