@@ -17,11 +17,11 @@ describe("CurrentYearService", () => {
     fetchMock.resetMocks();
   });
 
-  it("should return the mocked year", () => {
-    ["1", "2020", "2030"].forEach(async (year) => {
+  it("should return the mocked year", async () => {
+    for (const year of ["1", "2020", "2030"]) {
       setMockYear(year);
       expect(await instance.getCurrentYear()).toBe(year);
-    });
+    }
   });
 
   it("should throw if invalid timezone requested", () => {

@@ -1,30 +1,32 @@
-import timezones from "timezones-list";
-
 import { HttpService } from ".";
 import { TimezoneError } from "../exceptions";
+import { getTimezones } from "../utils";
 
 /**
  * Handles everything related to the CurrentYear API.
  * @access public
  * @example const service = new CurrentYearService();
  * @link https://current-year-api.addy.codes/
+ * @property {number=300} waitBetweenRequests Time in ms to wait between calls to the API
  */
 export class CurrentYearService {
-  private http: HttpService;
-  private timezones: string[];
+  waitBetweenRequests: number;
 
-  constructor() {
+  private http: HttpService;
+
+  constructor(waitBetweenRequests?: number) {
     this.http = new HttpService("https://current-year-api.addy.codes");
-    this.timezones = timezones.map((t) => t.tzCode);
+    this.waitBetweenRequests = waitBetweenRequests || 300;
   }
 
   /**
    * Prevents requesting non-existing timezones
-   * @param {string} tzCode Timezone Code to be validated
+   * @param tzCode Timezone Code to be validated
    * @throws A detailed error message if the requested timezone does not exist
    */
-  private abortIfBadTimezone(tzCode: string): void {
-    if (this.timezones.some((tz) => tz === tzCode)) {
+  private async abortIfBadTimezone(tzCode = ""): Promise<void> {
+    const timezones = await getTimezones();
+    if (!tzCode || timezones.some((tz) => tz === tzCode)) {
       return;
     }
     throw new TimezoneError(tzCode);
@@ -39,7 +41,7 @@ export class CurrentYearService {
    * @throws `TimezoneError` if invalid timezone
    */
   async getCurrentYear(timezone?: string): Promise<string> {
-    timezone && this.abortIfBadTimezone(timezone);
+    await this.abortIfBadTimezone(timezone);
     return (await this.http.get(`/what-year-is-it?in=${timezone}`)) as string;
   }
 
