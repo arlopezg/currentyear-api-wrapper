@@ -1,12 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="src/index.css" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="./index.js" type="module"></script>
-    <title>CurrentYear API Wrapper Demo</title>
+    <script src="src/index.js" type="module"></script>
+    <title>CurrentYearAPI</title>
   </head>
-  <body></body>
+  <body class="container" x-data>
+    <h1>CurrentYearAPI <mark>for Node</mark></h1>
+
+    <section>
+      <p>
+        This is a demo for
+        <a
+          href="https://github.com/arlopezg/currentyear-api-wrapper"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          arlopezg/currentyear-api-wrapper.
+        </a>
+      </p>
+
+      <article>
+        <h4>Try it out</h4>
+        <form x-init="getTimezones()">
+          <label
+            >Get single timezone
+            <select>
+              <option selected disabled>Select a timezone</option>
+              <option
+                x-for="tz in $store.timezones.all"
+                x-if="$store.timezones.all.length"
+                x-text="$store.timezones.current"
+              >
+                TZ
+              </option>
+            </select>
+          </label>
+        </form>
+      </article>
+    </section>
+
+    <footer>
+      <p>
+        <small>
+          Overengineered by
+          <a
+            href="https://alejandro-lopez.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Alejandro López</a
+          >
+          with &lt;3
+        </small>
+      </p>
+      <p>© <span id="footer-year" aria-busy="true"></span></p>
+    </footer>
+  </body>
 </html>
