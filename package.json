@@ -13,6 +13,7 @@
     "package.json",
     "README.md"
   ],
+  "type": "module",
   "scripts": {
     "build:demo": "cd demo && npm run build",
     "build:docs": "typedoc src --excludePrivate --out dist/docs",

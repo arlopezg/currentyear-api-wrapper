@@ -11,5 +11,15 @@
     "strict": true,
     "target": "es6"
   },
-  "exclude": ["**/*.spec.*", "jest.config.ts", "tests", "dist"]
+  "exclude": [
+    "**/*.spec.*",
+    "jest.config.ts",
+    "tests",
+    "dist"
+  ],
+  "ts-node": {
+    "moduleTypes": {
+      "jest.config.ts": "cjs"
+    }
+  },
 }
