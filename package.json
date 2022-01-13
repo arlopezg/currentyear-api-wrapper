@@ -38,7 +38,6 @@
     "typescript": "^4.5.4"
   },
   "dependencies": {
-    "currentyear-api-wrapper": "^0.0.5",
     "isomorphic-fetch": "^3.0.0",
     "timezones-list": "^3.0.1"
   },
