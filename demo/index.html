@@ -10,20 +10,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
     <script src="src/index.js" type="module"></script>
-    <meta property="og:title" content="CurrentYearAPI for NodeJS">
-    <meta property="og:site_name" content="CurrentYearAPI for NodeJS">
-    <meta property="og:url" content="https://arlopezg.github.io/currentyear-api-wrapper/">
-    <meta property="og:description" content="Get the current year for either UTC or specific timezone(s).">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://user-images.githubusercontent.com/8508658/149259352-3c3acd59-2150-4af6-b5ff-726232553a58.png">
-    <meta property="og:image:secure_url" content="https://user-images.githubusercontent.com/8508658/149259352-3c3acd59-2150-4af6-b5ff-726232553a58.png">
+    <meta property="og:title" content="CurrentYearAPI.js" />
+    <meta property="og:site_name" content="CurrentYearAPI.js" />
+    <meta
+      property="og:url"
+      content="https://arlopezg.github.io/currentyear-api-wrapper/"
+    />
+    <meta
+      property="og:description"
+      content="Get the current year for either UTC or specific timezone(s)."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://user-images.githubusercontent.com/8508658/149259352-3c3acd59-2150-4af6-b5ff-726232553a58.png"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://user-images.githubusercontent.com/8508658/149259352-3c3acd59-2150-4af6-b5ff-726232553a58.png"
+    />
     <title>CurrentYearAPI</title>
   </head>
   <body class="container" x-data="setup()">
     <nav>
       <ul>
         <li>
-          <h1>CurrentYearAPI <mark>for NodeJS</mark></h1>
+          <h1>CurrentYearAPI<mark>.js</mark></h1>
         </li>
       </ul>
       <ul>
@@ -37,30 +49,30 @@
 
     <section>
       <span>
-        This is a demo for
-        <a
-          href="https://github.com/arlopezg/currentyear-api-wrapper"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          arlopezg/currentyear-api-wrapper.
-        </a>
+        <4kb JavaScript wrapper for the CurrentYear API, compatible with NodeJS
+        and the browser. Fully typed and async.
       </span>
 
       <article>
         <h4>Try it out</h4>
         <form>
           <label>
-            Get single timezone
-            <select x-model="$store.timezones.current">
-              <option>Select a timezone</option>
+            <strong>Get single timezone</strong>
+
+            <input
+              type="text"
+              placeholder="Select a timezone"
+              list="currentTimezone"
+              x-model="$store.timezones.current"
+            />
+            <datalist id="currentTimezone">
               <template
                 x-if="$store.timezones.all.length"
                 x-for="tz in $store.timezones.all"
               >
-                <option :value="tz" x-text="tz"></option>
+                <option :value="tz" />
               </template>
-            </select>
+            </datalist>
           </label>
         </form>
 
@@ -74,7 +86,15 @@
         <hr />
 
         <form x-data="{MAX_TIMEZONES: 5, MIN_TIMEZONES: 0}">
-          <label>Get many timezones</label>
+          <label>
+            <strong>Get many timezones</strong>
+            <small x-show="$store.timezones.selected.length">
+              (<span
+                x-text="MAX_TIMEZONES - $store.timezones.selected.length"
+              ></span>
+              remaining)
+            </small>
+          </label>
 
           <div role="toolbar">
             <a
@@ -95,19 +115,28 @@
             </a>
           </div>
 
+          <br />
+
           <div class="grid">
             <template x-for="(tz, index) of $store.timezones.selected">
               <label>
                 <span x-text="'Timezone #' + (index + 1)"></span>
-                <select x-model="$store.timezones.selected[index]">
+
+                <input
+                  type="text"
+                  placeholder="Select a timezone"
+                  :list="index"
+                  x-model="$store.timezones.selected[index]"
+                />
+                <datalist :id="index">
                   <option>Select a timezone</option>
                   <template
                     x-if="$store.timezones.all.length"
                     x-for="tz in $store.timezones.all"
                   >
-                    <option :value="tz" x-text="tz || 'UTC'"></option>
+                    <option :value="tz" />
                   </template>
-                </select>
+                </datalist>
               </label>
             </template>
           </div>
@@ -118,11 +147,12 @@
             <li
               x-data="{selected: $store.timezones.selected[index]}"
               x-show="$store.timezones.selected[index]"
+              x-transition
             >
               It is
               <u
                 x-text="await getCurrrentYear($store.timezones.selected[index])"
-              ></u>
+              />
               in
               <strong x-text="$store.timezones.selected[index]"></strong>
             </li>

@@ -5,7 +5,7 @@ const createStore = () => {
   Alpine.store("timezones", {
     all: [],
     current: "",
-    selected: [],
+    selected: [""],
   });
 };
 
