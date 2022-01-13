@@ -34,7 +34,6 @@ export class CurrentYearService {
 
   /**
    * @async
-   * @link https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
    * @param {string} timezone Desired timezone, following the TZ format
    * @example await service.getCurrentYear("America/New_York")
    * @returns Current year on specified timezone as a string. If no timezone is required it assumes UTC.
@@ -47,7 +46,6 @@ export class CurrentYearService {
 
   /**
    * @async
-   * @link https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
    * @param {string[]} timezones Desired timezones, following the TZ format
    * @example await service.getCurrentYearOnManyTimezones(["America/New_York", "Europe/Madrid"])
    * @returns Current year on specified timezones as a a tuple list.
