@@ -6,6 +6,7 @@ const setCurrentYear = async () => {
   const year = await currentYearService.getCurrentYear();
 
   const footerYear = document.querySelector("#footer-year");
+  footerYear.innerHTML = year;
   footerYear.setAttribute("aria-busy", false);
 };
 

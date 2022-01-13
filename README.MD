@@ -31,11 +31,12 @@ service.getCurrentYear("America/New_York").then(console.log); // e.g. "2022"
 
 ### Reference
 
-Documentation is generated using [TypeDoc](https://typedoc.org/) and it's available at https://arlopezg.github.io/currentyear-api-wrapper
+- View the demo [here](https://arlopezg.github.io/currentyear-api-wrapper)
+- Documentation is generated using [TypeDoc](https://typedoc.org/) and it's available at https://arlopezg.github.io/currentyear-api-wrapper/docs/
 
 ---
 
-In the words of the wise Adam Green,
+In the words of the wise Adam Greenough,
 
 > Where is the NPM package?
 >

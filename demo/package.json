@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "start": "parcel",
-    "build": "parcel build --dist-dir ../dist"
+    "build": "parcel build --dist-dir ../dist --public-url ./"
   },
   "author": "",
   "license": "ISC",
