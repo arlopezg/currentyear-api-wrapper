@@ -1,12 +1,19 @@
 {
   "name": "demo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Static demo page that consumes the library",
+  "keywords": [
+    "esm",
+    "parcel",
+    "picocss"
+  ],
+  "source": [
+    "index.html"
+  ],
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel",
+    "build": "parcel build --dist-dir ../dist/demo"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
