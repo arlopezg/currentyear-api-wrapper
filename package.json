@@ -6,7 +6,7 @@
   "main": "dist/lib/index.js",
   "private": false,
   "unpkg": "dist/lib/index.js",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "files": [
     "dist",
     "LICENSE",
