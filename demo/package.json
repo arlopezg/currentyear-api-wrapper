@@ -21,6 +21,6 @@
   },
   "dependencies": {
     "alpinejs": "^3.7.1",
-    "currentyear-api-wrapper": "^0.0.7"
+    "currentyear-api-wrapper": "^0.1.0"
   }
 }
