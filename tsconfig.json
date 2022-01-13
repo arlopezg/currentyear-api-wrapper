@@ -5,7 +5,7 @@
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "outDir": "./dist",
+    "outDir": "./dist/lib",
     "sourceMap": true,
     "sourceRoot": "./src",
     "strict": true,

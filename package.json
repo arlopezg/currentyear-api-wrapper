@@ -3,9 +3,9 @@
   "author": "Alejandro López",
   "description": "Node wrapper for Adam Greenough's CurrentYear API",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/lib/index.js",
   "private": false,
-  "unpkg": "dist/index.js",
+  "unpkg": "dist/lib/index.js",
   "version": "0.0.7",
   "files": [
     "dist",
@@ -16,7 +16,8 @@
   "scripts": {
     "build:demo": "cd demo && npm run build",
     "build:docs": "typedoc src --excludePrivate --out dist/docs",
-    "build": "tsc",
+    "build:lib": "tsc",
+    "build": "npm run build:lib && npm run build:demo && npm run build:docs",
     "lint": "eslint . --ext .ts",
     "prepublishOnly": "npm run build",
     "start": "cd demo && npm start",
