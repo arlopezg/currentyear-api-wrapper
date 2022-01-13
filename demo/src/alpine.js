@@ -1,14 +1,16 @@
 import Alpine from "alpinejs";
+import { getTimezones as timezones } from "currentyear-api-wrapper";
 
 const createStore = () => {
   Alpine.store("timezones", {
-    current: null,
     all: [],
+    current: "",
+    selected: [],
   });
 };
 
-const getTimezones = () => {
-
+const getTimezones = async () => {
+  Alpine.store("timezones").all = await timezones();
 };
 
 const exposePublicMethods = () => {
@@ -23,6 +25,11 @@ const exposePublicMethods = () => {
  * @link https://alpinejs.dev/advanced/extending#via-npm
  */
 export const setupAlpine = () => {
-  const setupMethods = [exposePublicMethods, createStore, Alpine.start];
+  const setupMethods = [
+    exposePublicMethods,
+    createStore,
+    getTimezones,
+    Alpine.start,
+  ];
   setupMethods.forEach((fn) => fn());
 };

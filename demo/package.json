@@ -13,6 +13,7 @@
     "parcel": "^2.2.0"
   },
   "dependencies": {
-    "alpinejs": "^3.7.1"
+    "alpinejs": "^3.7.1",
+    "currentyear-api-wrapper": "^0.0.7"
   }
 }

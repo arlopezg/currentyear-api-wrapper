@@ -8,11 +8,13 @@
     <script src="src/index.js" type="module"></script>
     <title>CurrentYearAPI</title>
   </head>
-  <body class="container" x-data>
-    <h1>CurrentYearAPI <mark>for Node</mark></h1>
+  <body class="container" x-data="setup()">
+    <nav>
+      <h1>CurrentYearAPI <mark>for NodeJS</mark></h1>
+    </nav>
 
     <section>
-      <p>
+      <span>
         This is a demo for
         <a
           href="https://github.com/arlopezg/currentyear-api-wrapper"
@@ -21,42 +23,110 @@
         >
           arlopezg/currentyear-api-wrapper.
         </a>
-      </p>
+      </span>
 
       <article>
         <h4>Try it out</h4>
-        <form x-init="getTimezones()">
-          <label
-            >Get single timezone
-            <select>
-              <option selected disabled>Select a timezone</option>
-              <option
-                x-for="tz in $store.timezones.all"
+        <form>
+          <label>
+            Get single timezone
+            <select x-model="$store.timezones.current">
+              <option>Select a timezone</option>
+              <template
                 x-if="$store.timezones.all.length"
-                x-text="$store.timezones.current"
+                x-for="tz in $store.timezones.all"
               >
-                TZ
-              </option>
+                <option :value="tz" x-text="tz"></option>
+              </template>
             </select>
           </label>
         </form>
+
+        <p x-show="$store.timezones.current" x-transition>
+          It is
+          <u x-text="await getCurrrentYear($store.timezones.current)"></u>
+          in
+          <strong x-text="$store.timezones.current"></strong>
+        </p>
+
+        <hr />
+
+        <form x-data="{MAX_TIMEZONES: 5, MIN_TIMEZONES: 0}">
+          <label>Get many timezones</label>
+
+          <div role="toolbar">
+            <a
+              href="javascript:void(0)"
+              role="button"
+              @click="$store.timezones.selected.push('')"
+              :disabled="$store.timezones.selected.length >= MAX_TIMEZONES"
+            >
+              +
+            </a>
+            <a
+              href="javascript:void(0)"
+              role="button"
+              @click="$store.timezones.selected.pop()"
+              :disabled="!$store.timezones.selected.length === MIN_TIMEZONES"
+            >
+              -
+            </a>
+          </div>
+
+          <div class="grid">
+            <template x-for="(tz, index) of $store.timezones.selected">
+              <label>
+                <span x-text="'Timezone #' + (index + 1)"></span>
+                <select x-model="$store.timezones.selected[index]">
+                  <option>Select a timezone</option>
+                  <template
+                    x-if="$store.timezones.all.length"
+                    x-for="tz in $store.timezones.all"
+                  >
+                    <option :value="tz" x-text="tz || 'UTC'"></option>
+                  </template>
+                </select>
+              </label>
+            </template>
+          </div>
+        </form>
+
+        <ul x-show="$store.timezones.selected.length">
+          <template x-for="(tz, index) of $store.timezones.selected">
+            <li
+              x-data="{selected: $store.timezones.selected[index]}"
+              x-show="$store.timezones.selected[index]"
+            >
+              It is
+              <u
+                x-text="await getCurrrentYear($store.timezones.selected[index])"
+              ></u>
+              in
+              <strong x-text="$store.timezones.selected[index]"></strong>
+            </li>
+          </template>
+        </ul>
       </article>
     </section>
 
-    <footer>
-      <p>
-        <small>
-          Overengineered by
-          <a
-            href="https://alejandro-lopez.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Alejandro López</a
-          >
-          with &lt;3
-        </small>
-      </p>
-      <p>© <span id="footer-year" aria-busy="true"></span></p>
+    <footer class="grid">
+      <div class="spacer"></div>
+      <div>
+        <span>
+          <small>
+            Overengineered by
+            <a
+              href="https://alejandro-lopez.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Alejandro López</a
+            >
+            with &lt;3
+          </small>
+        </span>
+        <p>© <span id="footer-year" aria-busy="true"></span></p>
+      </div>
+      <div class="spacer"></div>
     </footer>
   </body>
 </html>
