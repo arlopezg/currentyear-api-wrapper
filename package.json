@@ -14,11 +14,12 @@
     "README.md"
   ],
   "scripts": {
-    "start": "cd demo && npm start",
-    "build:docs": "typedoc src --excludePrivate",
+    "build:demo": "cd demo && npm run build",
+    "build:docs": "typedoc src --excludePrivate --out dist/docs",
     "build": "tsc",
     "lint": "eslint . --ext .ts",
     "prepublishOnly": "npm run build",
+    "start": "cd demo && npm start",
     "test:coverage": "jest --coverage && cat coverage/lcov.info | coveralls",
     "test": "jest"
   },
