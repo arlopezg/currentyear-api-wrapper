@@ -1,5 +1,5 @@
 import { HttpService } from ".";
-import { TimezoneError } from "../exceptions";
+import { MissingTimezonesError, TimezoneError } from "../exceptions";
 import { getTimezones } from "../utils";
 
 /**
@@ -53,6 +53,9 @@ export class CurrentYearService {
   async getCurrentYearOnManyTimezones(
     timezones: string[]
   ): Promise<[string, string][]> {
+    if (timezones.length < 2) {
+      throw new MissingTimezonesError(timezones);
+    }
     return await Promise.all(
       timezones.map(async (t) => [t, await this.getCurrentYear(t)])
     );
