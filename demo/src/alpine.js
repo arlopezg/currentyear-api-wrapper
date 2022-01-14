@@ -6,7 +6,16 @@ const createStore = () => {
     all: [],
     current: "",
     selected: [""],
+    randomize() {
+      this.selected = this.selected.map(
+        () => this.all[getRandom(0, this.all.length)]
+      );
+    },
   });
+};
+
+const getRandom = (min = 0, max = 100) => {
+  return Math.floor(Math.random() * max) + min;
 };
 
 const getTimezones = async () => {

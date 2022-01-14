@@ -85,7 +85,7 @@
 
         <hr />
 
-        <form x-data="{MAX_TIMEZONES: 5, MIN_TIMEZONES: 0}">
+        <form x-data="{MAX_TIMEZONES: 5}">
           <label>
             <strong>Get many timezones</strong>
             <small x-show="$store.timezones.selected.length">
@@ -109,9 +109,17 @@
               href="javascript:void(0)"
               role="button"
               @click="$store.timezones.selected.pop()"
-              :disabled="!$store.timezones.selected.length === MIN_TIMEZONES"
+              :disabled="!$store.timezones.selected.length"
             >
               -
+            </a>
+            <a
+              href="javascript:void(0)"
+              role="button"
+              @click="$store.timezones.randomize()"
+              :disabled="!$store.timezones.selected.length"
+            >
+              Randomize
             </a>
           </div>
 
@@ -151,8 +159,8 @@
             >
               It is
               <u
-                x-text="await getCurrrentYear($store.timezones.selected[index])"
-              />
+                x-text="await getCurrentYear($store.timezones.selected[index])"
+              ></u>
               in
               <strong x-text="$store.timezones.selected[index]"></strong>
             </li>

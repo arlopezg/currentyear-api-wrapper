@@ -10,13 +10,13 @@ const setCurrentYear = async () => {
   footerYear.setAttribute("aria-busy", false);
 };
 
-async function getCurrrentYear(tz = "") {
+const getCurrentYear = async (tz = "") => {
   return await currentYearService.getCurrentYear(tz);
-}
+};
 
 window.setup = () => {
   return {
-    getCurrrentYear,
+    getCurrentYear,
   };
 };
 
